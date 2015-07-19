@@ -1,0 +1,110 @@
+<ion-view view-title="Pizza">
+  <ion-content>
+
+<form name="form" novalidate ng-submit="creer(user)">
+	<div class="list list-inset">
+	  <label class="item item-input">
+	  	
+	  	<span class="input-label">Nom</span>
+	    <input type="text" placeholder="Nom" name="uNom" ng-model="user.nom" required="">
+	    
+	  </label>
+	  	<div ng-show="form.$submitted || form.uNom.$touched">
+      		<div ng-show="form.uNom.$error.required">Dites nous votre nom.</div>
+    	</div>
+
+	  <label class="item item-input">
+	  	<span class="input-label">Prénom</span>
+	    <input type="text" placeholder="Prénom" name="uPrenom" ng-model="user.prenom" required="">
+	  </label>
+	  	<div ng-show="form.$submitted || form.uPrenom.$touched">
+      		<div ng-show="form.uPrenom.$error.required">Dites nous votre prénom.</div>
+    	</div>
+
+	  <label class="item item-input">
+	  	<span class="input-label">Téléphone</span>
+	    <input type="number" placeholder="Téléphone" maxlength=10 name="uTel" ng-model="user.tel" required="" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	  </label>
+		<div ng-show="form.$submitted || form.uTel.$touched">
+      		<div ng-show="user.tel.toString().length<9 || form.uTel.$error.required">Un souci avec votre livraison ?</div>
+    	</div>
+    	<div>	l: {{user.tel.toString().length}}</div>
+
+	  <label class="item item-input">
+	  	<span class="input-label">Ville</span>
+	    <select name="uVille" ng-model="user.ville" required="" 
+	    >
+	    	<option value="">Sélectionnez votre ville</option>
+	    	<option ng-repeat="ville in villes" value="{{$index+1}}">{{ville.nom}}</option>
+	    </select>
+	  </label>
+	  	<div ng-show="form.$submitted || form.uVille.$touched">
+      		<div ng-show="form.uVille.$error.required">Un souci avec votre livraison ?</div>
+    	</div>
+
+	  <label class="item item-input">
+	  <span class="input-label">Adresse</span>
+	  <textarea ng-model="user.adresse" name="uAdresse" placeholder="adresse" rows="2" required></textarea>
+		</label>
+		<div ng-show="form.$submitted || form.uAdresse.$touched">
+      		<div ng-show="form.uAdresse.$error.required">Un souci avec votre livraison ?</div>
+    	</div>
+
+	</div> <!-- fin de le list -->
+
+	<div class="list list-inset">	
+	  <label class="item item-input">
+		<span class="input-label">Email</span>
+	    <input ng-model="user.email" name="uEmail" required type="email" placeholder="Email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">   
+	  </label>
+	  	<div ng-show="form.$submitted || form.uEmail.$touched">
+      		<div ng-show="form.uEmail.$error.pattern || form.uEmail.$error.required">Et si vous oubliez votre mot de passe ?</div>
+    	</div>
+
+	  <label class="item item-input">
+	  	<span class="input-label">Mot de passe</span>
+	    <input ng-model="user.passe" ng-minlength="6" name="uPasse" type="password" required>
+	  </label>
+
+	  <label class="item item-input">
+	  	<span class="input-label">Confirmer</span>
+	    <input ng-model="user.passe2" ng-model="passe2" name="uPasse2" type="text" required>
+	  </label>
+
+	  	<div ng-show="form.$submitted || form.uPasse.$touched">
+      		<div ng-show="!!form.uPasse.$error.minlength">6 caractères minimum</div>
+    	</div>
+		<div ng-show="!form.uPasse.$touched">
+      		<div ng-show="user.passe.length<6 || !user.passe">6 caractères minimum</div>
+    	</div>
+
+	  
+      	<div ng-show="user.passe.localeCompare(user.passe2)">vous devez entrer 2 mots de passe identiques</div>
+    	
+
+		</div> <!-- fin de list2 -->
+
+		<div class="list list-inset">
+		  <li class="item item-checkbox">
+		     <label class="checkbox">
+		       <input type="checkbox">
+		     </label>
+		     J'accepte de recevoir notre newsletter
+		  </li>
+		</div>
+
+	<div class="list list-inset">
+
+	  <button type="submit" class="button button-block button-positive">S'inscrire</button>
+	</div>
+
+			
+
+
+
+
+</form>
+
+
+  </ion-content>
+</ion-view>

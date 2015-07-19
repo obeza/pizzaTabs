@@ -1,0 +1,68 @@
+<ion-view view-title="Menu">
+
+  <ion-content>	
+	
+	<div class="list card">
+
+	  <div class="item item-divider">
+	    <h2>{{article.nom}}</h2>
+	    
+	  </div>
+
+		<div class="item item-body">
+
+			<p>{{article.description}}</p>
+
+		<div class="button-bar" ng-hide="choixTaille">
+		    <a class="button" ng-class="{'button-positive': isActive('prix1')}" ng-click="setActive('prix1')"><b>Petite</b><div>{{article.prix1}}€</div></a>
+		    <a class="button" ng-class="{'button-positive': isActive('prix2')}" ng-click="setActive('prix2')"><b>Moyenne</b><div>{{article.prix2}}€</div></a>
+		    <a class="button" ng-class="{'button-positive': isActive('prix3')}" ng-click="setActive('prix3')"><b>Grande</b><div>{{article.prix3}}€</div></a>
+		</div>
+
+<!--
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Quantité
+    </div>
+    <select class="select-cadre" ng-model="article.quantite" convert-to-number>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </label>
+-->
+
+<div><h3>Quantité</h3></div>
+
+<div class="row quantite">
+  
+  <div class="col"><a class="button button-icon icon ion-minus-round" ng-click="moins()"></a>
+    <a class="button button-light">{{article.quantite}}</a>
+    <a class="button button-icon icon ion-plus-round" ng-click="plus()"></a></div>
+  <div class="col text-droite"><a class="button button-clear"><h2>Total : {{article.total}}€</h2></a></div> 
+    
+</div>
+
+<a ng-class="{'button-positive':article['quantite'] }" class="button button-block" ng-click="PanierAjouter()">Ajouter au panier</a>
+
+
+		<a class="button button-block icon ion-heart"> Ajouter aux favoris</a>
+		<a class="button button-block">Commander en clic</a>
+
+		
+		</div>
+
+	</div>
+
+  </ion-content>
+
+<div class="bar bar-footer">
+  <button class="button button-clear">Left</button>
+  <div class="title">Title</div>
+  <button class="button button-clear">Right</button>
+</div>
+
+</ion-view>
