@@ -6,8 +6,7 @@ app.controller('PointsInscriptionCtrl', ['$scope', function($scope){
 		{ "nom":"Basse-Pointe"},
 		{ "nom":"Bellefontaine"},
 		{ "nom":"Case-Pilote"},
-		{ "nom":"Ducos"},
-		
+		{ "nom":"Ducos"},		
 		{ "nom":"Fonds-Saint-Denis"},
 		{ "nom":"Fort-de-France" },
 		{ "nom":"Grand'Rivière"},

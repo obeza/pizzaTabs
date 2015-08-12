@@ -1,48 +1,42 @@
-app.factory('dataService', function ($http, $q, $interval ) {
-
-
-	var etabId = 2;
-
-	var dataSave = JSON.parse(window.localStorage.getItem('dataSave'));
+app.factory('dataService', function ($http, $q ) {
 	
+	var dataSave =  JSON.parse(window.localStorage.getItem('dataSave'));
 	return {
-
-		maj : function(){			
-			var promise = $http.get('http://localhost:8888/pizza-service/etab/' + etabId)
-				.then(function(response){
-					//console.log("service liste : "+response);
-	   				dataSave = response;
-	   				window.localStorage.setItem('dataSave',JSON.stringify(response));
-	   				var reponse = { "reponse" : "ok" }
-					return reponse;
-	   				
-				}, function(response) {
-					// probleme de connexion !!!
-					console.log("errrorrrr : ");
-					var reponse = { "reponse" : "erreur" }
-					return reponse;
-
-				});
-			return promise;
-		},
+		getEtabId: 2,
 		get: function (){
+			var promise
+			if (!dataSave){
+				console.log('dataSave ' + dataSave);
+				promise = $http.get('http://localhost:8888/projet-pizza/pizza-service/etab/' + this.getEtabId)
+					.then(function(response){
+						console.log("service liste : "+ JSON.stringify(response.data));
+		   				dataSave = response.data;
+		   				window.localStorage.setItem('dataSave',JSON.stringify(dataSave));
+		   				//var reponse = { "reponse" : "ok" }
+						return dataSave;
+		   				
+					}, function(response) {
+						// probleme de connexion !!!
+						console.log("errrorrrr : ");
+						var reponse = { "reponse" : "erreur" }
+						return reponse;
 
-			var promiseStart = $q.when('start');
+					});
+				return promise;
+			} else {
+				console.log('data from localStorage');
+				var promiseStart = $q.when('start');
 
-			var promise = promiseStart.then(function (value) {
-			
-				return dataSave;
-			});	
-			return promise;
-		},
-		getEtabId: function(){
-			return etabId;
-		},
-		charge: function(){
-			$interval(function() {
-     			console.log("charge");
-  			}, 3000);
+				promise = promiseStart.then(function (value) {
+				
+					//console.log('data ' + dataSave);
+					return dataSave;
+				});
+				return promise;
+			}
+
 		}
+
 	}
 
 });

@@ -8,7 +8,7 @@ app.controller('ArticleCtrl', ['$scope', 'dataService', '$stateParams', 'panier'
 
 	dataService.get().then( function(d){
 		//console.log( "reponse2 : " + JSON.stringify(d) );
-		$scope.article = d.data['articles'][artId];
+		$scope.article = d['articles'][artId];
 		//console.log( "reponse2 : " + JSON.stringify($scope.article) );
 
 		if ( $scope.article.prix>0){

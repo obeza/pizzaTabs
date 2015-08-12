@@ -2,7 +2,7 @@ app.controller('ArticlesCtrl', ['$scope', 'dataService', '$stateParams', '$ionic
 
 	dataService.get().then( function(d){
 		//console.log( "reponse2 : " + JSON.stringify(d) );
-		$scope.articles = d.data['articles'];
+		$scope.articles = d['articles'];
 
 	});
 

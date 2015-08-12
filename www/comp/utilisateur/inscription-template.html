@@ -28,12 +28,11 @@
 		<div ng-show="form.$submitted || form.uTel.$touched">
       		<div ng-show="user.tel.toString().length<9 || form.uTel.$error.required">Un souci avec votre livraison ?</div>
     	</div>
-    	<div>	l: {{user.tel.toString().length}}</div>
+    	<div>{{user.tel.toString().length}}</div>
 
 	  <label class="item item-input">
 	  	<span class="input-label">Ville</span>
-	    <select name="uVille" ng-model="user.ville" required="" 
-	    >
+	    <select name="uVille" ng-model="user.ville" required="">
 	    	<option value="">Sélectionnez votre ville</option>
 	    	<option ng-repeat="ville in villes" value="{{$index+1}}">{{ville.nom}}</option>
 	    </select>
